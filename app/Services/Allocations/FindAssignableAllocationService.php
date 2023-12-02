@@ -38,13 +38,16 @@ class FindAssignableAllocationService
         // we will fall back to attempting to create a new allocation that can be used for the
         // server.
         /** @var \Pterodactyl\Models\Allocation|null $allocation */
-        $allocation = $server->node->allocations()
+
+        /* -- Modified from original panel -- */
+        /*$allocation = $server->node->allocations()
             ->where('ip', $server->allocation->ip)
             ->whereNull('server_id')
             ->inRandomOrder()
-            ->first();
+            ->first();*/
 
-        $allocation = $allocation ?? $this->createNewAllocation($server);
+        /* -- Modified from original panel -- */
+        $allocation = /*$allocation ?? */$this->createNewAllocation($server);
 
         $allocation->update(['server_id' => $server->id]);
 
